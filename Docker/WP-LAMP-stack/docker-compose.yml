@@ -1,0 +1,54 @@
+# change the following lines in a new installation:
+# - networks
+# - phpmyadmin & wordpress port on host
+# - also create network seperatly
+
+version: '3'
+
+networks:
+  wp1_site:
+  
+services:
+  # Database
+  database:
+    image: mariadb:10
+    volumes:
+    - ./db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: wp
+      MYSQL_USER: wp_dev
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - wp1_site
+  
+  #phpmyadmin
+  phpmyadmin:
+    depends_on:
+     - database
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8081:80
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      PMA_HOST: database:3306
+    networks:
+      - wp1_site
+
+  #Wordpress
+  wordpress:
+    depends_on:
+      - database
+    image: wordpress:latest
+    ports:
+     - 8001:80
+    volumes: 
+      - ./wp:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: database:3306
+      WORDPRESS_DB_USER: wp_dev
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wp
+    networks:
+    - wp1_site
+
