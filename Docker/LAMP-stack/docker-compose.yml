@@ -1,6 +1,7 @@
 # change the following lines in a new installation:
-# - ports on host <host-port>:<docker-port>
-# - also create network seperatly if needed
+# - networks
+# - phpmyadmin & wordpress port on host
+# - also create network seperatly
 
 version: '3'
   
@@ -29,7 +30,10 @@ services:
 
   #php + Apache
   php:
-    image: php:apache
+    build:
+      # run dockerfile
+      context: . 
+      dockerfile: Dockerfile
     ports:
      - 80:80
     volumes: 
