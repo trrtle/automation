@@ -1,0 +1,38 @@
+# change the following lines in a new installation:
+# - ports on host <host-port>:<docker-port>
+# - also create network seperatly if needed
+
+version: '3'
+  
+services:
+  # Database
+  database:
+    image: mariadb:10
+    volumes:
+    - ./var/lib/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: lamp-db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: asdf
+  
+  #phpmyadmin
+  phpmyadmin:
+    depends_on:
+     - database
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      PMA_HOST: database:3306
+
+  #php + Apache
+  php:
+    image: php:apache
+    ports:
+     - 80:80
+    volumes: 
+      - ./var/www:/var/www
+    
+

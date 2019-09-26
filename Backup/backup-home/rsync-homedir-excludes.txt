@@ -53,7 +53,7 @@ Network/
 #
 /games
 .local/share/Steam
-.steam
+.steam/
 Steam
 .minecraft
 .PlayOnLinux
