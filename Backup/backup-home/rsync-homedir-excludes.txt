@@ -52,6 +52,7 @@ Network/
 ## Add Game Folders here:
 #
 /games
+/Games
 .local/share/Steam
 .steam/
 Steam
