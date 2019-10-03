@@ -10,7 +10,7 @@ services:
   database:
     image: mariadb:10
     volumes:
-    - ./var/lib/mysql:/var/lib/mysql
+    - mariadb:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: toor
       MYSQL_DATABASE: lamp-db
@@ -38,5 +38,8 @@ services:
      - 80:80
     volumes: 
       - ./var/www:/var/www
+
+volumes:
+  mariadb:
     
 
