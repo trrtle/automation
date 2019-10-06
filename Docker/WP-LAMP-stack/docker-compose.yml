@@ -7,13 +7,16 @@ version: '3'
 
 networks:
   wp1_site:
+
+volumes:
+	database:
   
 services:
   # Database
   database:
     image: mariadb:10
     volumes:
-    - ./db:/var/lib/mysql
+    - database:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: toor
       MYSQL_DATABASE: wp
