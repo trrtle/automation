@@ -1,7 +1,7 @@
 # change the following lines in a new installation:
-# - networks
-# - phpmyadmin & wordpress port on host
-# - also create network seperatly
+# - networks if needed
+# - ports on host if needed
+# - also create network seperatly if needed
 
 version: '3'
   
@@ -16,6 +16,7 @@ services:
       MYSQL_DATABASE: lamp-db
       MYSQL_USER: db_user
       MYSQL_PASSWORD: asdf
+    restart: always
   
   #phpmyadmin
   phpmyadmin:
@@ -27,6 +28,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: toor
       PMA_HOST: database:3306
+    restart: always
 
   #php + Apache
   php:
@@ -38,6 +40,7 @@ services:
      - 80:80
     volumes: 
       - ./var/www:/var/www
+    restart: always
 
 volumes:
   mariadb:
