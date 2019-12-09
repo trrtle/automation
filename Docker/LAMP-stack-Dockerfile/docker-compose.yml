@@ -1,6 +1,7 @@
 # change the following lines in a new installation:
+# - networks if needed
 # - ports on host if needed
-
+# - also create network seperatly if needed
 
 version: '3'
   
@@ -31,7 +32,10 @@ services:
 
   #php + Apache
   php:
-    image: trrtle/php_apache:1.0
+    build:
+      # run dockerfile
+      context: . 
+      dockerfile: Dockerfile
     ports:
      - 80:80
     volumes: 
