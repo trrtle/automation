@@ -11,7 +11,7 @@
 
 PKGLIST="/home/turtle/pkgs.txt"
 AURPKGLIST="/home/turtle/aur-pkgs.txt"
-EXCLUDESFILE = "~/Development/Scripts/automation/shell/rsync-homedir-excludes.txt"
+EXCLUDESFILE="/home/turtle/Development/Scripts/automation/shell/rsync-homedir-excludes.txt"
 
 # 1. create a file called arch-pkgs.txt with all the installed packages.
 sudo pacman -Qqtn > $PKGLIST
@@ -55,7 +55,7 @@ fi
 
 # do a rsync test
 echo "Master, please give me a second while i test the backup"
-sudo rsync -na --exclude-from=$EXCLUDESFILE /home/turtle/ /home/turtle/Network/Micky/Backups/Zubat
+sudo rsync -na --exclude-from=$EXCLUDESFILE /home/turtle/Network/Micky/Backups/Zubat
 EXITCODE=$?
 if [[ $EXITCODE -eq 0 ]]; then
     echo 'Test well executed, im so goood'
@@ -66,12 +66,12 @@ fi
 
 # Run rsync
 echo "STARTING BACKUP NOW"
-sudo rsync -av --no-l --exclude-from=rsync-homedir-excludes.txt /home/turtle/ /home/turtle/Network/Micky/Backups/Zubat > backup_log.txt
+sudo rsync -av --no-l --exclude-from=$EXCLUDESFILE /home/turtle/ /home/turtle/Network/Micky/Backups/Zubat > backup_log.txt
 EXITCODE=$?
 if [[ $EXITCODE -eq 0 ]]; then
     echo 'Backup is complete. oh boi you got some nasty shit in there.'
 else
-    echo 'Operation terminated. To much data to handle'
+    echo 'Operation terminated: rsync -av'
     exit 1;
 fi
 
