@@ -20,7 +20,20 @@
 Network/
 .builds/
 .mozilla/
-.dropbox/
+.dropbox*/
+.config/discord/
+.IntelliJIdea*/
+.PhpStorm*/
+.steam*/
+.eclipse/
+.java/
+.thunderbird/
+Videos/
+.config/Code/
+.config/Electron/
+.config/chromium/
+Development/containers/amazing-college/
+
 
 .android
 .AndroidStudio*/
