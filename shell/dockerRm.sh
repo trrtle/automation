@@ -1,0 +1,1 @@
+docker container rm $(docker container ls -qa -f name="$1")
