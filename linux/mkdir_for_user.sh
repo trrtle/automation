@@ -10,7 +10,7 @@ mkdir_for_user -u [user] -d [directory] -p
 -d, --directory     specify the directory(s) to be created
 -p, --parent        create parent directories
 
-script requires root password
+User that runs this script must be allowed to use sudo
 "
 
 if [[ $# -eq 0 ]]; then
